@@ -1,0 +1,65 @@
+{
+    "StartAt": "Main Block",
+    "States": {
+        "Main Block": {
+            "Type": "Parallel",
+            "Next": "Merge ARNs",
+            "Branches": [{
+                    "StartAt": "Describe TaskDef",
+                    "States": {
+                        "Describe TaskDef": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:DescribeTaskDefinition",
+                            "End": true
+                        }
+
+                    }
+                },
+                {
+                    "StartAt": "Describe Service",
+                    "States": {
+                        "Describe Service": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:DescribeServices",
+                            "End": true
+                        }
+
+                    }
+                },
+                {
+                    "StartAt": "Describe Cluster",
+                    "States": {
+                        "Describe Cluster": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:DescribeClusters",
+                            "End": true
+                        }
+
+                    }
+                },
+                {
+                    "StartAt": "Describe All Instances",
+                    "States": {
+                        "Describe All Instances": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:DescribeAllInstances",
+                            "End": true
+                        }
+
+                    }
+                }
+
+            ]
+        },
+        "Merge ARNs": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:MergeStateData",
+            "Next": "Upload Output"
+        },
+        "Upload Output": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:eu-west-1:608014515287:function:UploadErrorOutput",
+            "End": true
+        }
+    }
+}
