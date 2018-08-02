@@ -18,4 +18,4 @@ ROLE="arn:aws:iam::015887481462:role/AcunaStepFunctionRole"
 
 #local directory /c/Users/uc245836/Desktop/AWS/StepFunction/deploy.sh
 
-aws StepFunction update-state-machine --state-machine-arn $ARN --definition $VAR --role-arn $ROLE
+aws stepfunctions update-state-machine --state-machine-arn $ARN --definition $VAR --role-arn $ROLE
