@@ -15,11 +15,11 @@ VAR=`cat example.json`
 echo $VAR
 REGION="us-east-1"
 #local directory /c/Users/uc245836/Desktop/AWS/StepFunction/deploy.sh
-DEFINITION=\''{\
+DEFINITION=\''{
   "Comment": "A Hello World example of the Amazon States Language using a Pass state",
   "StartAt": "HelloWorld",
   "States": {
-    "HelloWorld\": {
+    "HelloWorld": {
       "Type": "Pass",
       "Result": "Hello World has been updated!",
       "End": true
