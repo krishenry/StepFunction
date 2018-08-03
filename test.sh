@@ -6,5 +6,5 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	ls -al
 	chmod +x deployAlias.sh
 	ls -al
-	./deployAlias.sh #./deployTest #$line
+	./deployAlias.sh #./deployTest 
 done < $filename

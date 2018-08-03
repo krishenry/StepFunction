@@ -11,7 +11,7 @@ CURDIR=`pwd`
 
 NAME=$line	#LizzieTestDev
 ALIAS=WORKS
-VERSION=1
+VERSION=2
 
 existing_aliases=$(aws lambda list-aliases --function-name ${NAME} --region ${REGION} --output json| jq -r '.Aliases[] | {Name: .Name}')
 
