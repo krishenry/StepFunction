@@ -8,10 +8,9 @@ trap deployFail ERR
 
 CURDIR=`pwd`
 
-#split function for lambda name and version
 variables=( $line )
-echo ${variables[0]} #variable 0 is Lambda name
-echo ${variables[1]} #variable 1 is version
+echo ${variables[0]} 
+echo ${variables[1]} 
 
 NAME=${variables[0]}
 ALIAS=WORKS
