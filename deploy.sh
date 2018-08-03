@@ -26,4 +26,6 @@ DEFINITION="{\
     }\
   }\
 }"
+echo ###############
+echo $DEFINITION
 aws stepfunctions update-state-machine --state-machine-arn $ARN --definition $DEFINITION --region $REGION
