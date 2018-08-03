@@ -4,6 +4,5 @@ filename='lambdanames.txt'
 chmod +x deployAlias.sh
 while IFS='' read -r line || [[ -n "$line" ]]; do
 	export line
-	echo $line
-	./deployAlias.sh
+	./splitterfunctiontest.sh #./deployAlias.sh
 done < $filename

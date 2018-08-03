@@ -8,10 +8,14 @@ trap deployFail ERR
 
 CURDIR=`pwd`
 
+#split function for lambda name and version
+variables=( $line )
+echo ${variables[0]} #variable 0 is Lambda name
+echo ${variables[1]} #variable 1 is version
 
-NAME=$line	
+NAME=$variable[0]	
 ALIAS=WORKS
-VERSION=1
+VERSION=$variable[1]
 
 existing_aliases=$(aws lambda list-aliases --function-name ${NAME} --region ${REGION} --output json| jq -r '.Aliases[] | {Name: .Name}')
 
