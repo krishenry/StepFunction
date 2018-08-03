@@ -9,7 +9,7 @@ trap deployFail ERR
 CURDIR=`pwd`
 
 
-NAME=$line	#LizzieTestDev
+NAME=$line	
 ALIAS=WORKS
 VERSION=1
 
