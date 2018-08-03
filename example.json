@@ -3,12 +3,12 @@
     "States": {
         "Merge ARNs": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:608014515287:function:MergeStateData",
+            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev:DEV",
             "Next": "Upload Output"
         },
         "Upload Output": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:608014515287:function:UploadErrorOutput",
+            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest:DEV",
             "End": true
         }
     }
