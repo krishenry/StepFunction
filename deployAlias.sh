@@ -7,13 +7,11 @@ function deployFail {
 trap deployFail ERR
 
 CURDIR=`pwd`
-#NAME=$(cat ./Code/lambdaName)
-NAME=LizzieTestDev
-ALIAS=KRIS
+
+
+NAME=$line	#LizzieTestDev
+ALIAS=WORKS
 VERSION=1
-#VERSION=$(cat ./Code/version)
-#BUILD_VERSION=$VERSION.$GO_PIPELINE_COUNTER
-#build_number=$1
 
 existing_aliases=$(aws lambda list-aliases --function-name ${NAME} --region ${REGION} --output json| jq -r '.Aliases[] | {Name: .Name}')
 
@@ -23,3 +21,4 @@ if [[ $existing_aliases == *"$ALIAS"* ]]; then
 else
    aws lambda create-alias --region ${REGION} --function-name ${NAME} --description "${NAME}" --function-version $VERSION --name $ALIAS
 fi
+
