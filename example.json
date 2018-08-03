@@ -1,5 +1,5 @@
 {
-    "StartAt": "Merge Arns",
+    "StartAt": "Merge ARNs",
     "States": {
         "Merge ARNs": {
             "Type": "Task",
