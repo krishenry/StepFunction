@@ -28,4 +28,4 @@ DEFINITION=\''{
 }'\'
 echo "###############"
 echo $DEFINITION
-aws stepfunctions update-state-machine --state-machine-arn $ARN --definition example.json --region $REGION
+aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$DEFINITION" --region $REGION
