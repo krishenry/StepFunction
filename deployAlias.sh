@@ -13,9 +13,9 @@ variables=( $line )
 echo ${variables[0]} #variable 0 is Lambda name
 echo ${variables[1]} #variable 1 is version
 
-NAME=${variable[0]}
+NAME=${variables[0]}
 ALIAS=WORKS
-VERSION=${variable[1]}
+VERSION=${variables[1]}
 
 existing_aliases=$(aws lambda list-aliases --function-name ${NAME} --region ${REGION} --output json| jq -r '.Aliases[] | {Name: .Name}')
 
