@@ -17,7 +17,7 @@ count=0
 filename='lambdanames.txt'
 chmod +x deployAlias.sh
 while IFS='' read -r line || [[ -n "$line" ]]; do
-	lines[${count}]=line
+	lines[${count}]=${line}
 	count=$((count+1))
 done < $filename
 
