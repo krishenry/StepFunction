@@ -42,7 +42,7 @@ done < $filename
 
 
 VAR='{
-    "StartAt": "${( ${lines}[0] )[0]}",
+    "StartAt": "$(( $(lines)[0] )[0])",
     "States": {
         "${( ${lines}[0] )[0]}": {
             "Type": "Task",
