@@ -11,10 +11,11 @@ CURDIR=`pwd`
 variables=( $line )
 echo ${variables[0]} 
 echo ${variables[1]} 
+echo ${variables[2]} 
 
 NAME=${variables[0]}
-ALIAS=WORKS
 VERSION=${variables[1]}
+ALIAS=${variables[2]}	#WORKS
 
 existing_aliases=$(aws lambda list-aliases --function-name ${NAME} --region ${REGION} --output json| jq -r '.Aliases[] | {Name: .Name}')
 
