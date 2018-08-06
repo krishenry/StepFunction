@@ -18,7 +18,7 @@ filename='lambdanames.txt'
 chmod +x deployAlias.sh
 while IFS='' read -r line || [[ -n "$line" ]]; do
 	lines[${count}]=line
-	${count}++
+	count= $((count+1))
 done < $filename
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
