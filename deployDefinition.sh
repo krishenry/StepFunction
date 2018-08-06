@@ -51,7 +51,7 @@ echo "( ${lines[0]} )[0]"
 # }'
 
 
-VAR='{
+VAR="{
     "StartAt": "($($lines[0])[0])",
     "States": {
         "($($lines[0])[0])": {
@@ -65,7 +65,7 @@ VAR='{
             "End": true
         }
     }
-}'
+}"
 
 
 aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$VAR" --region $REGION
