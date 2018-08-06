@@ -12,28 +12,14 @@ CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN
-declare -a lines
-count=0
-filename='lambdanames.txt'
-chmod +x deployAlias.sh
-while IFS='' read -r line || [[ -n "$line" ]]; do
-	lines[${count}]=${line}
-	count=$((count+1))
-done < $filename
-
-echo "${lines[1]}"
-
-echo "${lines[0]}[0]"
-
-echo "( ${lines[0]} )[0]"
-
-# echo "($($lines[0])[0])"
-
 
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
 
-#VAR=`cat example.json`
+VAR=`cat example.json`
+
+aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$VAR" --region $REGION
+
 # VAR='{
 #     "StartAt": "LizzieTestDev",
 #     "States": {
@@ -51,21 +37,21 @@ echo "( ${lines[0]} )[0]"
 # }'
 
 
-VAR="{
-    "StartAt": "($($lines[0])[0])",
-    "States": {
-        "($($lines[0])[0])": {
-            "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev", 
-            "Next": "( ${lines}[1] )[0]"
-        },
-        "( ${lines}[1] )[0]": {
-            "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest",
-            "End": true
-        }
-    }
-}"
+# VAR="{
+#     "StartAt": "($($lines[0])[0])",
+#     "States": {
+#         "($($lines[0])[0])": {
+#             "Type": "Task",
+#             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev", 
+#             "Next": "( ${lines}[1] )[0]"
+#         },
+#         "( ${lines}[1] )[0]": {
+#             "Type": "Task",
+#             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest",
+#             "End": true
+#         }
+#     }
+# }"
 
 
-aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$VAR" --region $REGION
+

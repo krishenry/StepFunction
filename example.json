@@ -1,4 +1,4 @@
-{
+{	
     "StartAt": "LizzieTestDev",
     "States": {
         "LizzieTestDev": {
