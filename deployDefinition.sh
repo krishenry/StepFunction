@@ -21,13 +21,13 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	count=$((count+1))
 done < $filename
 
-echo "${lines[0]}"
+echo "${lines[1]}"
 
 echo "${lines[0]}[0]"
 
 echo "( ${lines[0]} )[0]"
 
-echo "(($lines[0])[0])"
+echo "($($lines[0])[0])"
 
 
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
