@@ -27,7 +27,7 @@ echo "${lines[0]}[0]"
 
 echo "( ${lines[0]} )[0]"
 
-echo "${${lines[0]}[0]}"
+echo "(($lines[0])[0])"
 
 
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
