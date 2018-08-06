@@ -42,9 +42,9 @@ done < $filename
 
 
 VAR='{
-    "StartAt": "$(( $(lines)[0] )[0])",
+    "StartAt": "$(($(lines)[0])[0])",
     "States": {
-        "${( ${lines}[0] )[0]}": {
+        "$(($(lines)[0])[0])": {
             "Type": "Task",
             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev", 
             "Next": "( ${lines}[1] )[0]"
