@@ -1,12 +1,12 @@
 {
-    "StartAt": "Merge ARNs",
+    "StartAt": "LizzieTestDev",
     "States": {
-        "Merge ARNs": {
+        "LizzieTestDev": {
             "Type": "Task",
             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev", 
-            "Next": "Upload Output"
+            "Next": "LizzieTest"
         },
-        "Upload Output": {
+        "LizzieTest": {
             "Type": "Task",
             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest",
             "End": true
