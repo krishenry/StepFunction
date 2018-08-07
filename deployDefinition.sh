@@ -33,27 +33,6 @@ VAR=`{
         }
     }
 }`
-echo $VAR
-aws stepfunctions update-state-machine --state-machine-arn $ARN --definition $VAR --region $REGION
-
-
-
-
-# VAR="{
-#     "StartAt": "($($lines[0])[0])",
-#     "States": {
-#         "($($lines[0])[0])": {
-#             "Type": "Task",
-#             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev", 
-#             "Next": "( ${lines}[1] )[0]"
-#         },
-#         "( ${lines}[1] )[0]": {
-#             "Type": "Task",
-#             "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest",
-#             "End": true
-#         }
-#     }
-# }"
-
-
+#echo "$VAR"
+aws stepfunctions update-state-machine --state-machine-arn $ARN --definition $VAR" --region $REGION
 
