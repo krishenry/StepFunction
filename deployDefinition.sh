@@ -18,7 +18,10 @@ ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 
 VAR=`cat example.json`
 
-#echo "$VAR"
+echo "$VAR"
+
+REGION="us-east-1"
+
 aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$VAR" --region $REGION
 
 
