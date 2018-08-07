@@ -34,5 +34,5 @@ VAR=`{
     }
 }`
 #echo "$VAR"
-aws stepfunctions update-state-machine --state-machine-arn $ARN --definition $VAR --region $REGION
+aws stepfunctions update-state-machine --state-machine-arn $ARN --definition "$VAR" --region $REGION
 
