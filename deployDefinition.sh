@@ -15,7 +15,26 @@ ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
 
-VAR=`cat exampleOriginal.json`
+#VAR=`cat example.json`
+
+VAR=$(cat << EOF
+{
+    "StartAt": "Merge ARNs",
+    "States": {
+        "Merge ARNs": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev:HIA",
+            "Next": "Upload Output"
+        },
+        "Upload Output": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTest:HIA",
+            "End": true
+        }
+    }
+}
+EOF
+)
 echo "$VAR"
 
 REGION="us-east-1"
