@@ -10,10 +10,11 @@ trap deployFail ERR
 CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
-
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
+
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
+aws lambda get-function --function-name LizzieTestDev
 
 filename='lambdanames.txt'
 count=0
