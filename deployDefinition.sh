@@ -17,13 +17,15 @@ ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 
 #VAR=`cat example.json`
 
+lambda_ARN="arn:aws:lambda:us-east-1:015887481462"
+
 VAR=$(cat << EOF
 {
     "StartAt": "Merge ARNs",
     "States": {
         "Merge ARNs": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:015887481462:function:LizzieTestDev:HIA",
+            "Resource": "$lambda_ARN:function:LizzieTestDev:HIA",
             "Next": "Upload Output"
         },
         "Upload Output": {
@@ -35,6 +37,7 @@ VAR=$(cat << EOF
 }
 EOF
 )
+
 echo "$VAR"
 
 REGION="us-east-1"
