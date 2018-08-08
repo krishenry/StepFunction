@@ -47,12 +47,12 @@ VAR=$(cat << EOF
     "States": {
         "Merge ARNs": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:$lambdanames[0]:$alias[0]",
+            "Resource": "$lambda_ARN:${lambdanames[0]}:${alias[0]}",
             "Next": "Upload Output"
         },
         "Upload Output": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:$lambdanames[1]:$alias[1]",
+            "Resource": "$lambda_ARN:${lambdanames[1]}:${alias[1]}",
             "End": true
         }
     }
