@@ -30,13 +30,13 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	variables=( $line )
 
 	alias[${count}]="${variables[2]}"
-	echo "${alias[${count}]}"
+	#echo "${alias[${count}]}"
 
 	version[${count}]="${variables[1]}"
-	echo "${version[${count}]}"
+	#echo "${version[${count}]}"
 
 	lambda_names[${count}]="${variables[0]}"
-	echo "${lambda_names[${count}]}"
+	#echo "${lambda_names[${count}]}"
 
 	count=$((count+1))
 done < $filename
@@ -47,18 +47,20 @@ VAR=$(cat << EOF
     "States": {
         "Merge ARNs": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:lambdanames[0]:$alias[0]",
+            "Resource": "$lambda_ARN:$lambdanames[0]:$alias[0]",
             "Next": "Upload Output"
         },
         "Upload Output": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:lambdanames[1]:alias[1]",
+            "Resource": "$lambda_ARN:$lambdanames[1]:$alias[1]",
             "End": true
         }
     }
 }
 EOF
 )
+
+echo "$VAR"
 
 REGION="us-east-1"
 
