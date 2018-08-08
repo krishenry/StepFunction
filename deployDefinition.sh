@@ -37,7 +37,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 
 	output=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION ) #get lambda_ARN
 	echo $output
-	new_ARN=(cat << EOF 
+	new_ARN=$(cat << EOF 
 	"$output" 
 	EOF 
 	)
