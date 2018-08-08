@@ -14,7 +14,7 @@ lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
-aws lambda get-function --function-name LizzieTestDev
+aws lambda get-function --function-name LizzieTestDev --region $REGION
 
 filename='lambdanames.txt'
 count=0
