@@ -8,16 +8,12 @@ function deployFail {
 trap deployFail ERR
 
 CURDIR=`pwd`
-
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
+lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 #LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
-
-#VAR=`cat example.json`
-
-lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
 filename='lambdanames.txt'
 count=0
@@ -41,16 +37,17 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	count=$((count+1))
 done < $filename
 
+#VAR=`cat example.json`
 VAR=$(cat << EOF
 {
-    "StartAt": "Merge ARNs",
+    "StartAt": "${lambda_names[0]}",
     "States": {
-        "Merge ARNs": {
+        "${lambda_names[0]}": {
             "Type": "Task",
             "Resource": "$lambda_ARN:${lambda_names[0]}:${alias[0]}",
-            "Next": "Upload Output"
+            "Next": "${lambda_names[1]}"
         },
-        "Upload Output": {
+        "${lambda_names[1]}": {
             "Type": "Task",
             "Resource": "$lambda_ARN:${lambda_names[1]}:${alias[1]}",
             "End": true
