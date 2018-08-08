@@ -35,8 +35,8 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	lambda_names[${count}]="${variables[0]}"
 	#echo "${lambda_names[${count}]}"
 
-	someshite=($(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq '.FunctionArn' )) #get lambda_ARN
-	echo $someshite
+	output=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq '.FunctionArn' ) #get lambda_ARN
+	echo $output
 
 	count=$((count+1))
 done < $filename
