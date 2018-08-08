@@ -18,7 +18,7 @@ ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 #VAR=`cat example.json`
 
 lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
-Alias="HIA"
+Alias="YUPPP"
 VAR=$(cat << EOF
 {
     "StartAt": "Merge ARNs",
