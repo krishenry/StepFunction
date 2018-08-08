@@ -42,9 +42,11 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	EOF 
 	)'
 
-	
-	new_ARN=$( $output | jq '.Configuration.FunctionArn' )
 	echo $new_ARN
+
+	new_lambda_ARN=$( "$new_ARN" | jq '.Configuration.FunctionArn' )
+	echo $new_lambda_ARN
+	
 
 	count=$((count+1))
 done < $filename
