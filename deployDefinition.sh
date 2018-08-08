@@ -58,7 +58,7 @@ VAR=$(cat << EOF
 EOF
 )
 
-echo "$VAR"
+#echo "$VAR"
 
 REGION="us-east-1"
 
