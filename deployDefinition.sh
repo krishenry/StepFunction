@@ -6,17 +6,17 @@ function deployFail {
 }
 
 trap deployFail ERR
-
+StepFuncName="Kris-StepFunction"
 CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
-aws stepfunctions list-state-machines --region $REGION
+String=''
 
+StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name==`$StepFuncName`]{stateMachineArn:stateMachineArn}' | jq -r '.stateMachineArn')
+
+echo $StepARN
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION #line works doesnt help much
-
-
-aws lambda get-function --function-name LizzieTestDev --region $REGION
 
 filename='lambdanames.txt'
 count=0
