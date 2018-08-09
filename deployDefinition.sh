@@ -11,9 +11,8 @@ CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
-#someshite=
+
 aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION
-#echo $someshite
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 
 aws lambda get-function --function-name LizzieTestDev --region $REGION
@@ -38,7 +37,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	lambda_names[${count}]="${variables[0]}"
 	#echo "${lambda_names[${count}]}"
 
-	new_lambda_ARN[${count}]=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
+	lambda_ARN[${count}]=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
 	#echo "${new_lambda_ARN[${count}]}"
 
 	count=$((count+1))
@@ -51,12 +50,12 @@ VAR=$(cat << EOF
     "States": {
         "${lambda_names[0]}": {
             "Type": "Task",
-            "Resource": "${new_lambda_ARN[0]}:${lambda_names[0]}:${alias[0]}",
+            "Resource": "${lambda_ARN[0]}:${lambda_names[0]}:${alias[0]}",
             "Next": "${lambda_names[1]}"
         },
         "${lambda_names[1]}": {
             "Type": "Task",
-            "Resource": "${new_lambda_ARN[1]}:${lambda_names[1]}:${alias[1]}",
+            "Resource": "${lambda_ARN[1]}:${lambda_names[1]}:${alias[1]}",
             "End": true
         }
     }
