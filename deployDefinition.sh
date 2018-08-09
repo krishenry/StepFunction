@@ -44,10 +44,9 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	# EOF 
 	# )'
 
-	
 	#echo $output
 	#echo ($output | jq -r '.Configuration' | jq -r '.FunctionArn')
-	new_lambda_ARN=${aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn'}
+	new_lambda_ARN=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
 	#echo $new_lambda_ARN
 	echo $new_lambda_ARN
 
