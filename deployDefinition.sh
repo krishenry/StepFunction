@@ -45,8 +45,8 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 
 	
 	echo $output
-	echo ($output | jq -r '.Configuration.FunctionArn')
-	new_lambda_ARN=$( $output | jq -r '.Configuration.FunctionArn' )
+	echo ($output | jq -r '.Configuration' | jq -r '.FunctionArn')
+	new_lambda_ARN=$($output | jq -r '.Configuration' | jq -r '.FunctionArn')
 	#echo $new_lambda_ARN
 	echo $new_lambda_ARN
 
