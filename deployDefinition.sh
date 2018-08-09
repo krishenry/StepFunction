@@ -9,11 +9,12 @@ trap deployFail ERR
 
 CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
-lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
-#aws stepfunctions describe-state-machine --state-machine-arn $ARN
+#lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
+
+someshite=aws stepfunctions describe-state-machine --state-machine-arn $ARN
+echo $someshite
 #ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
 
-#LizzieTestDev=aws lambda describe-lambda --name $from file || jq .arn
 aws lambda get-function --function-name LizzieTestDev --region $REGION
 
 filename='lambdanames.txt'
@@ -22,6 +23,7 @@ count=0
 declare alias
 declare	lambda_names
 declare version
+declare new_lambda_ARN
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
 	variables=( $line )
@@ -35,20 +37,8 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	lambda_names[${count}]="${variables[0]}"
 	#echo "${lambda_names[${count}]}"
 
-	#output=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION ) #get lambda_ARN
-	
-	#echo $output
-	# new_ARN='$(cat << EOF 
-	# {
-	# $output }
-	# EOF 
-	# )'
-
-	#echo $output
-	#echo ($output | jq -r '.Configuration' | jq -r '.FunctionArn')
-	new_lambda_ARN=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
-	#echo $new_lambda_ARN
-	echo $new_lambda_ARN
+	new_lambda_ARN[${count}]=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
+	#echo "${new_lambda_ARN[${count}]}"
 
 	count=$((count+1))
 done < $filename
@@ -60,20 +50,18 @@ VAR=$(cat << EOF
     "States": {
         "${lambda_names[0]}": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:${lambda_names[0]}:${alias[0]}",
+            "Resource": "${new_lambda_ARN[0]}:${lambda_names[0]}:${alias[0]}",
             "Next": "${lambda_names[1]}"
         },
         "${lambda_names[1]}": {
             "Type": "Task",
-            "Resource": "$lambda_ARN:${lambda_names[1]}:${alias[1]}",
+            "Resource": "${new_lambda_ARN[1]}:${lambda_names[1]}:${alias[1]}",
             "End": true
         }
     }
 }
 EOF
 )
-
-
 
 #echo "$VAR"
 
