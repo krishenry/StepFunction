@@ -11,9 +11,10 @@ CURDIR=`pwd`
 ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
+aws stepfunctions list-state-machines --region $REGION
 
-aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION
-#ARN=aws stepfunctions describe-step-function --name Kris-StepFunction || jq .arn
+#aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION #line works doesnt help much
+
 
 aws lambda get-function --function-name LizzieTestDev --region $REGION
 
