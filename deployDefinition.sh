@@ -12,7 +12,7 @@ CURDIR=`pwd`
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
 StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name==`Kris-StepFunction`].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
-echo $StepARN
+#echo $StepARN
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION #line works doesnt help much
 
 filename='lambdanames.txt'
