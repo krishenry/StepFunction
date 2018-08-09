@@ -13,7 +13,7 @@ ARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 
 String=''
 
-StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name==`Kris-StepFunction`].{stateMachineArn:stateMachineArn}' | jq -r '.stateMachineArn')
+StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name==`Kris-StepFunction`].{stateMachineArn:stateMachineArn}' ) #| jq -r '.stateMachineArn')
 
 echo $StepARN
 #aws stepfunctions describe-state-machine --state-machine-arn $ARN --region $REGION #line works doesnt help much
