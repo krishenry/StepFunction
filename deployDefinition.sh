@@ -65,4 +65,4 @@ EOF
 
 REGION="us-east-1"
 
-aws stepfunctions update-state-machine --state-machine-arn $StepARN --definition "$VAR" --region $REGION
+aws stepfunctions update-state-machine --state-machine-arn "$StepARN" --definition "$VAR" --region $REGION
