@@ -13,9 +13,17 @@ CURDIR=`pwd`
 StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=='$StepFuncName'].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
 echo "$StepARN"
 
+StepARN=""
+
 if [ -z "$StepARN" ]; then  #-z checks if string is unset or empty (null and "")
 	echo "\$StepARN is empty"
-	exit
+	#exit
+fi
+
+StepARN=null
+if [ -z "$StepARN" ]; then  #-z checks if string is unset or empty (null and "")
+	echo "\$StepARN is empty"
+	#exit
 fi
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
@@ -48,7 +56,6 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	count=$((count+1))
 done < $filename
 
-#VAR=`cat example.json`
 VAR=$(cat << EOF
 {
     "StartAt": "${lambda_names[0]}",
@@ -68,6 +75,7 @@ VAR=$(cat << EOF
 EOF
 )
 
+#VAR=`cat example.json`
 #echo "$VAR"
 
 REGION="us-east-1"
