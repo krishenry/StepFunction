@@ -71,4 +71,6 @@ EOF
 
 REGION="us-east-1"
 
-aws stepfunctions update-state-machine --state-machine-arn "$StepARN" --definition "$VAR" --region $REGION
+time=$(aws stepfunctions update-state-machine --state-machine-arn "$StepARN" --definition "$VAR" --region $REGION)
+
+echo "StepFunction Upload Successful"
