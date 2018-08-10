@@ -6,7 +6,8 @@ function deployFail {
 }
 
 trap deployFail ERR
-StepFuncName="'Kris-Step2Function'"
+StepFuncName="'Kris-StepFunction'"
+#Name needs to be in both sets of quotes eg "'{name}'"
 CURDIR=`pwd`
 
 StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=='$StepFuncName'].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
