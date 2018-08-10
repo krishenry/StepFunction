@@ -6,15 +6,13 @@ function deployFail {
 }
 
 trap deployFail ERR
-StepFuncName="'Kris-StepFunction'"
-echo $StepFuncName
+StepFuncName="'Kris-Step2Function'"
 CURDIR=`pwd`
 
 StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=='$StepFuncName'].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
-echo "$StepARN"
 
 if [ -z "$StepARN" ]; then  #-z checks if string is unset or empty (null and "")
-	echo "\$StepARN is empty"
+	echo "$StepFuncName ARN not found"
 	exit 1
 fi
 
