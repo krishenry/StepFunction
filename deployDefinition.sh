@@ -12,7 +12,7 @@ CURDIR=`pwd`
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
 
-StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=="'$StepFuncName'"].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
+StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=='"$StepFuncName"'].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
 echo "$StepARN"
 StepARN="arn:aws:states:us-east-1:015887481462:stateMachine:Kris-StepFunction"
 
