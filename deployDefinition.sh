@@ -15,7 +15,7 @@ echo "$StepARN"
 
 if [ -z "$StepARN" ]; then  #-z checks if string is unset or empty (null and "")
 	echo "\$StepARN is empty"
-	exit
+	exit 1
 fi
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
