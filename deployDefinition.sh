@@ -12,7 +12,7 @@ CURDIR=`pwd`
 
 StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateMachines[?name=='$StepFuncName'].{stateMachineArn:stateMachineArn}' | jq -r '.[].stateMachineArn')
 echo "$StepARN"
-StepARN=null
+StepARN=""
 if[-z "$StepARN"]
 then 
 	echo "\$StepARN is empty"
