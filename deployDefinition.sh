@@ -53,12 +53,12 @@ VAR=$(cat << EOF
     "States": {
         "${lambda_names[0]}": {
             "Type": "Task",
-            "Resource": "${lambda_ARN[0]}:${lambda_names[0]}:${alias[0]}",
+            "Resource": "${lambda_ARN[0]}:${alias[0]}",
             "Next": "${lambda_names[1]}"
         },
         "${lambda_names[1]}": {
             "Type": "Task",
-            "Resource": "${lambda_ARN[1]}:${lambda_names[1]}:${alias[1]}",
+            "Resource": "${lambda_ARN[1]}:${alias[1]}",
             "End": true
         }
     }
