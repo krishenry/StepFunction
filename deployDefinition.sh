@@ -6,7 +6,7 @@ function deployFail {
 }
 
 trap deployFail ERR
-StepFuncName="'Kris-StejjjpFunction'"
+StepFuncName="'Kris-StepFunction'"
 echo $StepFuncName
 CURDIR=`pwd`
 
