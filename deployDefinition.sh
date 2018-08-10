@@ -6,7 +6,7 @@ function deployFail {
 }
 
 trap deployFail ERR
-StepFuncName="Kris-StepFunction"
+StepFuncName="$Kris-StepFunction"
 CURDIR=`pwd`
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
