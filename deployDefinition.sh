@@ -17,8 +17,6 @@ if[-z "$StepARN"]
 then 
 	echo "\$StepARN is empty"
 	exit
-else
-	echo "\$StepARN is NOT empty"
 fi
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
