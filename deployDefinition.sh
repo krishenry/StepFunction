@@ -15,6 +15,8 @@ StepARN=$(aws stepfunctions list-state-machines --region $REGION --query 'stateM
 if [ -z "$StepARN" ]; then  #-z checks if string is unset or empty (null and "")
 	echo "$StepFuncName ARN not found"
 	exit 1
+else
+	echo "$StepFuncName 's ARN is $StepARN"
 fi
 
 #lambda_ARN="arn:aws:lambda:us-east-1:015887481462:function"
