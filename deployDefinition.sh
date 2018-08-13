@@ -42,11 +42,12 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	#echo "${lambda_names[${count}]}"
 
 	lambda_ARN[${count}]=$(aws lambda get-function --function-name "${variables[0]}" --region $REGION | jq -r '.Configuration' | jq -r '.FunctionArn')
-	echo "${lambda_names[${count}]} 's ARN is ${lambda_ARN[${count}]}"
-
+	
 if [ -z "${lambda_ARN[${count}]}" ]; then  #-z checks if string is unset or empty (null and "")
     echo "${lambda_names[${count}]} 's ARN not found"
     exit 1
+else
+	echo "${lambda_names[${count}]} 's ARN is ${lambda_ARN[${count}]}"
 fi
 
 	count=$((count+1))
