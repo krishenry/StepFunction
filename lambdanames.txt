@@ -1,2 +1,2 @@
 LizzieTestDev 15 CURRENT
-LizzieTest 2 CURRENT
+LizzieTest2 2 CURRENT
